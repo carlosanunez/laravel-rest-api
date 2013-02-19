@@ -1,5 +1,6 @@
 <?php
 
-Route::any('api', function() {
-    return "WTF!";
-});
+Route::any('api/templates/(:num?)', array(
+    'as' => 'api.templates',
+    'uses' => 'api::templates@index',
+));

@@ -16,9 +16,18 @@ class Api_Templates_Controller extends Controller {
 
     public $restful = true;
 
-    public function get_index()
+    public function get_index($id = null)
     {
+        if (is_null($id))
+            return Response::eloquent(Template::all());
+        else {
+            $template = Template::find($id);
 
+            if (is_null($template))
+                return Response::json('Template not found', 404);
+            else
+                return Response::eloquent($template);
+        }
     }
 
     public function post_index()
@@ -33,6 +42,6 @@ class Api_Templates_Controller extends Controller {
 
     public function delete_index()
     {
-        
+
     }
 }
